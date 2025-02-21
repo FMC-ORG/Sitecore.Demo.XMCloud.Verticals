@@ -55,6 +55,45 @@
   }
 }
 
+.site-vital-nova .header {
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    text-align: left;
+
+    @media (width < 1200px) {
+      flex-direction: column;
+    }
+
+    @include respond-to(mobile-large) {
+      flex-direction: row;
+    }
+
+    .play {
+      display: flex;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #255be3;
+
+      svg {
+        width: 1rem;
+      }
+
+      .dark & {
+        color: #fff;
+      }
+    }
+
+    .finance {
+      color: var(--bg-accent);
+      font-weight: 300;
+    }
+  }
+}
+
 // PLAY! services specific styles
 .site-services .header {
   h1 {

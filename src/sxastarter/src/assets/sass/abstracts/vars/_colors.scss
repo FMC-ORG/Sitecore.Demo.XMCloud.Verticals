@@ -34,7 +34,50 @@
     --roundness: 1rem;
   }
 }
+.site-vital-nova {
+  /* Text Colors */
+  --text-body: #003366; /* Nova Blue: Trust, Professionalism */
+  --text-body-inverted: #ffffff;
+  --text-footer: #666666; /* Supportive Grey */
+  --text-accent: #009999; /* Calm Teal: Innovation, Care */
 
+  /* Background Colors */
+  --bg-body: #ffffff; /* Crisp White */
+  --bg-main: #f2f2f2; /* Soft Gray: Clean, Modern */
+  --bg-main-alt: #ffffff;
+  --bg-color: #c7c9cc; /* Vital Green: Renewal, Growth */
+  --bg-saturated: #0f5d95; /* Lighter teal/green tint for subtle highlights */
+
+  /* Border & Divider Colors */
+  --border-color: #efefef;
+  --hr-color: #efefef;
+
+  /* Global Rounding for UI Elements */
+  --roundness: 1rem;
+
+  /* Dark Mode or Alternate Theme */
+  .dark & {
+    /* Text Colors */
+    --text-body: #f2f2f2;
+    --text-body-inverted: #003366;
+    --text-footer: #66cc99;
+    --text-accent: #66cc99;
+
+    /* Background Colors */
+    --bg-body: #1a1a1a;
+    --bg-main: #202020;
+    --bg-main-alt: #2a2a2a;
+    --bg-color: #264fa7;
+    --bg-saturated: #003a3a;
+
+    /* Border & Divider Colors */
+    --border-color: #444444;
+    --hr-color: #666666;
+
+    /* Consistent rounding */
+    --roundness: 1rem;
+  }
+}
 // Services
 .site-services {
   --text-body: #391400;
