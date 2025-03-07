@@ -1,88 +1,48 @@
-import type React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { Share2 } from 'lucide-react';
-import { type Field, Text } from '@sitecore-jss/sitecore-jss-nextjs';
 
-interface NewsCardProps {
-  fields?: {
-    title: Field<string>;
-    description: Field<string>;
-    image: {
-      value: {
-        src: string;
-        alt: string;
-      };
-    };
-    category: Field<string>;
-    timePosted: Field<string>;
-    url: Field<string>;
-  };
-}
-
-const NewsCard: React.FC<NewsCardProps> = ({ fields }) => {
-  // Default/fallback values if Sitecore fields are not provided
-  const defaultFields = {
-    title: { value: 'AMORIM EXPLAINS SMALLER SQUAD SELECTION' },
-    description: {
-      value:
-        "The boss wants to protect the club's youngsters, which is why only 18 players have travelled to Spain.",
-    },
-    image: {
-      value: {
-        src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-BRmx880TouFaBEIdZpXrRIDPuVyE6u.png',
-        alt: 'Manchester United players in training',
-      },
-    },
-    category: { value: 'news' },
-    timePosted: { value: '17h' },
-    url: { value: '/news/amorim-explains-squad-selection' },
-  };
-
-  // Use provided fields or fall back to defaults
-  const { title, description, image, category, timePosted, url } = fields || defaultFields;
-
+export default function Default() {
   return (
-    <article className="group relative bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-      <Link href={url.value} className="block">
-        <div className="relative aspect-[16/9]">
-          <Image
-            src={image.value.src || '/placeholder.svg'}
-            alt={image.value.alt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+    <div className="container">
+      <div className=" mx-auto bg-white shadow-sm rounded-lg overflow-hidden flex flex-col md:flex-row">
+        {/* Image section - takes full width on mobile, half width on desktop */}
+        <div className="md:w-1/2">
+          <img
+            src="https://a.espncdn.com/photo/2025/0302/r1458734_1296x518_5-2.jpg"
+            alt="Football players in training"
+            className="w-full h-full object-cover"
           />
         </div>
 
-        <div className="p-4">
-          <h2 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors duration-200">
-            <Text field={title} />
+        {/* Content section */}
+        <div className="md:w-1/2 p-6 flex flex-col justify-between">
+          {/* Red line at the top */}
+          <div className="w-12 h-1 bg-red-600 mb-4"></div>
+
+          {/* Headline */}
+          <h2 className="text-2xl font-bold uppercase leading-tight mb-3 text-black">
+            AMORIM EXPLAINS SMALLER SQUAD SELECTION
           </h2>
 
-          <p className="text-gray-600 text-sm mb-4">
-            <Text field={description} />
+          {/* Subheading/Description */}
+          <p className="text-[#333333] mb-6">
+            The boss wants to protect the club's youngsters, which is why only 18 players have
+            travelled to Spain.
           </p>
 
-          <div className="flex items-center justify-between text-xs text-gray-500">
-            <div className="flex items-center space-x-2">
-              <span>{timePosted.value}</span>
-              <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
-              <span className="lowercase">{category.value}</span>
+          {/* Footer with time, category and share button */}
+          <div className="flex items-center justify-between mt-auto">
+            <div className="flex items-center space-x-2 text-sm text-[#666666]">
+              <span>21 h</span>
+              <span>|</span>
+              <span>news</span>
             </div>
-
-            <button
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
-              aria-label="Share"
-            >
-              <Share2 className="w-4 h-4" />
+            <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+              <Share2 className="w-5 h-5 text-[#444444]" />
             </button>
           </div>
         </div>
-      </Link>
-    </article>
+      </div>
+    </div>
   );
-};
-
-export default NewsCard;
+}
 
