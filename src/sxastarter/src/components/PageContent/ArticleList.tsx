@@ -202,7 +202,6 @@ const ArticleListGrid = (props: ArticleListComponentProps): JSX.Element => {
 const ArticleListManUn = (props: ArticleListComponentProps): JSX.Element => {
   const id = props.params?.RenderingIdentifier;
   const newsItems = getNewsItems(props.fields?.items, Number.parseInt(props.params?.NumberOfItems));
-  const { t } = useI18n();
 
   // Function to determine time display (1d, 3h, etc.)
   const getTimeDisplay = (index: number) => {
