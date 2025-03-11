@@ -218,18 +218,16 @@ const ArticleListManUn = (props: ArticleListComponentProps): JSX.Element => {
   const newsItems = getNewsItems(props.fields?.items, Number.parseInt(props.params?.NumberOfItems));
 
   // Function to determine time display (1d, 3h, etc.)
-  const getTimeDisplay = (index: number) => {
-    switch (index % 4) {
-      case 0:
-        return '1d';
-      case 1:
-        return '3h';
-      case 2:
-        return '22h';
-      case 3:
-        return '2d';
-      default:
-        return '1d';
+  const getTimeDisplay = (creationDate: string) => {
+    const createdAt = new Date(creationDate);
+    const now = new Date();
+    const diffInHours = Math.floor((now.getTime() - createdAt.getTime()) / (1000 * 60 * 60));
+    if (diffInHours < 1) {
+      return '1h';
+    } else if (diffInHours < 24) {
+      return `${diffInHours}h`; // Less than an hour ago
+    } else {
+      return `${Math.floor(diffInHours / 24)}d`; // Show days if more than 2 days
     }
   };
 
@@ -284,7 +282,7 @@ const ArticleListManUn = (props: ArticleListComponentProps): JSX.Element => {
 
                 {/* Footer with time and content type */}
                 <div className="flex items-center text-gray-500 text-xs border-t pt-2">
-                  <span>{getTimeDisplay(i)}</span>
+                  <span>{getTimeDisplay(item.fields.CreationDate.value)}</span>
                   <span className="mx-2">|</span>
                   <span>{getContentType(i)}</span>
 
