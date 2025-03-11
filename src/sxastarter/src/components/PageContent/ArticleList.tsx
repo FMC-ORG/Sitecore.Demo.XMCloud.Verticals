@@ -289,7 +289,7 @@ const ArticleListManUn = (props: ArticleListComponentProps): JSX.Element => {
               </div>
 
               {/* Link overlay */}
-              <Link href={item.url} className="absolute inset-0 z-10">
+              <Link href={item.url}>
                 <span className="sr-only">
                   <Text field={item.fields.Title}></Text>
                 </span>
