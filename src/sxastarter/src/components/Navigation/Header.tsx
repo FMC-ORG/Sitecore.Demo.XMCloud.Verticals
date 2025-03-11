@@ -6,13 +6,18 @@ export const Default = (props: ComponentProps): JSX.Element => {
   const id = props.params.RenderingIdentifier;
 
   return (
-    <div className={`component header ${props.params.styles.trimEnd()}`} id={id ? id : undefined}>
-      <div className={`container container-${props.params?.ContainerWidth?.toLowerCase()}-fluid`}>
+    <div
+      className={`component header ${props.params.styles.trimEnd()}  bg-[#c70101] text-white`}
+      id={id ? id : undefined}
+    >
+      <div
+        className={`container container-${props.params?.ContainerWidth?.toLowerCase()}-fluid text-white`}
+      >
         <div className="row align-items-center">
-          <div className="col-auto">
-            <Placeholder name="header-left" rendering={props.rendering} />
+          <div className="col-auto text-white">
+            <Placeholder  name="header-left" rendering={props.rendering} />
           </div>
-          <div className="col">
+          <div className="col text-white">
             <Placeholder name="header-right" rendering={props.rendering} />
           </div>
         </div>
