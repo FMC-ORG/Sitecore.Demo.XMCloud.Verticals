@@ -20,6 +20,7 @@ interface Fields {
   BackgroundImage: ImageField;
   Name: Field<string>;
   Photo: ImageField;
+  CreationDate: Field<string>;
   Position: Field<string>;
 }
 
@@ -40,6 +41,11 @@ interface ArticleListComponentProps {
 const getNewsItems = (items: ArticleListItemProps[], numOfItems: number) => {
   return items
     ?.filter((item) => item.name !== 'Data' && item.name !== 'Authors')
+    .sort(
+      (a, b) =>
+        new Date(b.fields.CreationDate.value).getTime() -
+        new Date(a.fields.CreationDate.value).getTime()
+    ) // Most recent first
     .slice(0, numOfItems || undefined);
 };
 
