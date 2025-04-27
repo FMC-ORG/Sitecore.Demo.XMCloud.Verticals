@@ -7,7 +7,7 @@ export const Default = (): JSX.Element => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
 
     if (mq.matches) {
-      setIsSystemDark(true);
+      setIsSystemDark(false);
     }
 
     mq.addEventListener('change', (evt) => {
@@ -29,7 +29,7 @@ export const Default = (): JSX.Element => {
         id="theme-switcher"
         type="checkbox"
         checked={isSystemDark}
-        onChange={() => setIsSystemDark(!isSystemDark)}
+        onChange={() => setIsSystemDark(false)}
       />
       <span className="theme-switcher-slider"></span>
     </label>
