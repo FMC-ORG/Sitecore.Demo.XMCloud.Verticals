@@ -15,6 +15,7 @@ import { ParallaxBackgroundImage } from 'components/NonSitecore/ParallaxBackgrou
 import useVisibility from 'src/hooks/useVisibility';
 import { ComponentProps } from 'lib/component-props';
 import { DottedAccent } from 'components/NonSitecore/DottedAccent';
+import YouTube from 'react-youtube';
 
 interface Fields {
   Eyebrow: Field<string>;
@@ -24,6 +25,7 @@ interface Fields {
   Image: ImageField;
   Link: LinkField;
   Link2: LinkField;
+  VideoUrl?: Field<string>;
 }
 
 export type PromoCtaProps = ComponentProps & {
@@ -31,11 +33,20 @@ export type PromoCtaProps = ComponentProps & {
   fields: Fields;
 };
 
+const getYouTubeVideoId = (url: string) => {
+  const regex = /(?:\?v=|\/embed\/|\.be\/)([^&]+)/;
+  const match = url.match(regex);
+  return match ? match[1] : '';
+};
+
 export const Default = (props: PromoCtaProps): JSX.Element => {
   const id = props.params.RenderingIdentifier;
   const { sitecoreContext } = useSitecoreContext();
   const isPageEditing = sitecoreContext.pageEditing;
   const [isVisible, domRef] = useVisibility();
+  const videoId = props.fields.VideoUrl?.value
+    ? getYouTubeVideoId(props.fields.VideoUrl.value)
+    : null;
 
   return (
     <div
@@ -74,14 +85,31 @@ export const Default = (props: PromoCtaProps): JSX.Element => {
           <div className="col-md-10 mx-auto col-lg-7 mx-lg-0">
             <div className="image-wrapper">
               <DottedAccent className="dotted-accent-top" />
-              <NextImage
-                field={props.fields.Image}
-                className={`d-block mx-lg-auto img-fluid ${
-                  !isPageEditing ? `fade-section ${isVisible ? 'is-visible' : ''}` : ''
-                }`}
-                width={900}
-                height={900}
-              />
+              {videoId ? (
+                <YouTube
+                  videoId={videoId}
+                  opts={{
+                    width: '100%',
+                    height: '500',
+                    playerVars: {
+                      autoplay: 1,
+                      controls: 0,
+                      modestbranding: 1,
+                      rel: 0,
+                    },
+                  }}
+                  className={!isPageEditing ? `fade-section ${isVisible ? 'is-visible' : ''}` : ''}
+                />
+              ) : (
+                <NextImage
+                  field={props.fields.Image}
+                  className={`d-block mx-lg-auto img-fluid ${
+                    !isPageEditing ? `fade-section ${isVisible ? 'is-visible' : ''}` : ''
+                  }`}
+                  width={900}
+                  height={900}
+                />
+              )}
               <DottedAccent className="dotted-accent-bottom" />
             </div>
           </div>
@@ -96,7 +124,9 @@ export const WithPlaceholderColumn = (props: PromoCtaProps): JSX.Element => {
   const { sitecoreContext } = useSitecoreContext();
   const isPageEditing = sitecoreContext.pageEditing;
   const [isVisible, domRef] = useVisibility();
-
+  const videoId = props.fields.VideoUrl?.value
+    ? getYouTubeVideoId(props.fields.VideoUrl.value)
+    : null;
   return (
     <div
       className={`component promo-cta with-placeholder-column ${props.params.styles.trimEnd()}`}
@@ -140,14 +170,33 @@ export const WithPlaceholderColumn = (props: PromoCtaProps): JSX.Element => {
 
               <div className="image-wrapper d-none d-md-block col-md-8">
                 <DottedAccent className="dotted-accent-top" />
-                <NextImage
-                  field={props.fields.Image}
-                  className={`d-block mx-lg-auto img-fluid ${
-                    !isPageEditing ? `fade-section ${isVisible ? 'is-visible' : ''}` : ''
-                  }`}
-                  width={900}
-                  height={900}
-                />
+                {videoId ? (
+                  <YouTube
+                    videoId={videoId}
+                    opts={{
+                      width: '100%',
+                      height: '500',
+                      playerVars: {
+                        autoplay: 1,
+                        controls: 0,
+                        modestbranding: 1,
+                        rel: 0,
+                      },
+                    }}
+                    className={
+                      !isPageEditing ? `fade-section ${isVisible ? 'is-visible' : ''}` : ''
+                    }
+                  />
+                ) : (
+                  <NextImage
+                    field={props.fields.Image}
+                    className={`d-block mx-lg-auto img-fluid ${
+                      !isPageEditing ? `fade-section ${isVisible ? 'is-visible' : ''}` : ''
+                    }`}
+                    width={900}
+                    height={900}
+                  />
+                )}
                 <DottedAccent className="dotted-accent-bottom" />
               </div>
             </div>
