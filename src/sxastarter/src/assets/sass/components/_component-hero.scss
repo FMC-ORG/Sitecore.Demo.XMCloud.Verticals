@@ -3,7 +3,7 @@
 .hero {
   padding: 0;
   height: 640px;
-  color: rgb(0 0 0 / 95%);
+  color: rgb(255, 255, 255);
   width: 100%;
 
   a {
@@ -33,7 +33,6 @@
 
   .content-container {
     height: 100%;
-    justify-content: space-between;
     padding-top: 56px;
     padding-bottom: 64px;
     display: flex;
