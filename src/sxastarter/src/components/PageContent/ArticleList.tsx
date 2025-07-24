@@ -38,9 +38,10 @@ interface ArticleListComponentProps {
 }
 
 const getNewsItems = (items: ArticleListItemProps[], numOfItems: number) => {
-  return items
-    ?.filter((item) => item.name !== 'Data' && item.name !== 'Authors')
-    .slice(0, numOfItems || undefined);
+  const filtered = items
+    ?.filter((item) => item.name !== 'Data' && item.name !== 'Authors') || [];
+  const shuffled = filtered.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, numOfItems || undefined);
 };
 
 const getAllArticlesPageHref = (items: ArticleListItemProps[]) => {
