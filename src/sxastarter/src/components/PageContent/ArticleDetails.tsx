@@ -69,7 +69,7 @@ export const Default = (props: PageBackgroundProps): JSX.Element => {
                       <Text field={props.fields.Title} />
                     </h1>
                     <p className="article-excerpt">
-                      <Text field={props.fields.Excerpt} />
+                      {props.fields?.Excerpt && <Text field={props.fields.Excerpt} />}
                     </p>
                   </div>
                 </div>
