@@ -122,7 +122,7 @@ export const Simple = (props: PageBackgroundProps): JSX.Element => {
             <div className="row">
               <div className="col-12 col-lg-6 mx-auto">
                 <p className="article-excerpt fs-5">
-                  <Text field={props.fields.Excerpt} />
+                  {props.fields?.Excerpt && <Text field={props.fields.Excerpt} />}
                 </p>
                 <div className="article-content-body rich-text mt-5">
                   <RichText field={props.fields.Content} />
