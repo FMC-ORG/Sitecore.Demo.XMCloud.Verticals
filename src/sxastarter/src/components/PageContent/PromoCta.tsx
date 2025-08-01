@@ -57,6 +57,7 @@ export const Default = (props: PromoCtaProps): JSX.Element => {
       <div className="container">
         <div className="row row-gap-4 main-content align-items-center">
           <div className="col-lg-5 text-center text-lg-start">
+            <h1>Some new functionality here</h1>
             <h6 className="eyebrow-accent">
               <Text field={props.fields.Eyebrow} />
             </h6>
